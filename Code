@@ -1,0 +1,59 @@
+`python
+import pandas as pd
+# Load the dataset
+url = https://www.kaggle.com/datasets/mathchi/diabetes-data￾set/data.csv"
+names = ['Pregnancies', 'Glucose', 'BloodPressure', 'SkinThickness', 
+'Insulin', 'BMI', 'DiabetesPedigreeFunction', 'Age', 'Outcome']
+dataset = pd.read_csv(url, names=names)```python
+
+# Display basic information about the dataset
+
+print(dataset.info())
+
+# Display summary statistics
+
+print(dataset.describe())
+
+# Display the first few rows of the dataset
+
+print(dataset.head())python
+
+# Handling missing values (replace 0s with NaN for relevant columns)
+
+cols_with_zeros = ['Glucose', 'BloodPressure', 'SkinThickness', 
+
+'Insulin', 'BMI']
+
+dataset[cols_with_zeros] = dataset[cols_with_zeros].replace(0, 
+
+pd.np.nan)
+
+# Replace NaN values with mean or median
+
+dataset.fillna(dataset.mean(), inplace=True)
+python
+# Select features and target variable
+X = dataset.drop('Outcome', axis=1) # Features
+y = dataset['Outcome'] # Target variable
+python
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, 
+
+random_state=42)
+
+```
+
+### 6. Standardization/Normalization (Optional):
+
+Standardize or normalize the data if necessary, especially if you planpython
+
+from sklearn.preprocessing import StandardScaler
+
+scaler = StandardScaler()
+
+X_train = scaler.fit_transform(X_train)
+
+X_test = scaler.transform(X_test)
+
+```
+
+N
